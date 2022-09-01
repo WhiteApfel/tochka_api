@@ -1,0 +1,12 @@
+name = "tochka_api"
+account_id = "05e1669d8f5321ed189bc14b2cc0d0c5"
+workers_dev = true
+route = ""
+main = "./.output/server/index.mjs"
+compatibility_date = "2022-08-01"
+
+[site]
+bucket = ".output/public"
+
+[build]
+command = ""

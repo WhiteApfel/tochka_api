@@ -47,7 +47,7 @@ from tochka_api.models import PermissionsEnum
 
 client_id = "<<client_id>>"
 client_secret = "<<client_secret>>"
-redirect_uri = "https://tochka_api.pfel.cc/"
+redirect_uri = "https://tochka-api.pfel.cc/"
 
 tochka = TochkaAPI(client_id, client_secret, redirect_uri=redirect_uri)
 
