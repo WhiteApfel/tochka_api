@@ -31,6 +31,11 @@
 </template>
 
 <script setup>
+useHead({
+  titleTemplate: 'Tochka API',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no',
+})
+
 const queries = useState('queries', () => {return {}})
 
 function copy_to_clipboard(text) {
@@ -149,7 +154,9 @@ div.title > h1 {
   right: 0;
   height: 100%;
   width: 3.25em;
-  background: linear-gradient(90deg, #fff0, #fff 20%);
+  padding-left: .5em;
+  backdrop-filter: blur(2px);
+  background: linear-gradient(90deg, #fff0, #fff8 50%);
 }
 .field_container > div.field_value > div.copy_icon_container > svg {
   height: 1.25em;
