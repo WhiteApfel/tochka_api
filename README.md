@@ -37,7 +37,7 @@ python setup.py install
   * [ ] Refunds
   * [ ] Account
 
-### How to use
+### 🧑‍🏫 How to use
 
 ```python
 import asyncio
