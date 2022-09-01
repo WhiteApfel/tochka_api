@@ -1,0 +1,4 @@
+pydantic~=1.10.1
+httpx~=0.23.0
+ujson~=5.4.0
+appdirs~=1.4.4
