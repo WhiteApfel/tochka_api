@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import Literal
+from typing import Literal, Iterator
 
 from models.responses import TochkaBaseResponse
 from pydantic import BaseModel, Field, root_validator, validator
@@ -48,10 +48,10 @@ class AccountsResponse(TochkaBaseResponse):
     def __len__(self):
         return len(self.accounts)
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Account]:
         if isinstance(self.accounts, list):
             return self.accounts.__iter__()
         return [self.accounts].__iter__()
 
-    def __getitem__(self, item):
+    def __getitem__(self, item) -> Account:
         return self.accounts[item]

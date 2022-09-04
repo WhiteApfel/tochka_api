@@ -26,5 +26,5 @@ async def customer_code(tochka_client):
 
 @pytest.fixture
 async def legal_id(tochka_client, customer_code):
-    customer_info = await tochka_client.sbp_get_customer_info(customer_code)
+    customer_info = await tochka_client.sbp_get_customer_info(await customer_code)
     return customer_info.legal_id

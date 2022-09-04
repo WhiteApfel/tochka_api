@@ -45,12 +45,6 @@ class TochkaAPIMeta:
 
         return super(TochkaAPIMeta, cls).__new__(cls)
 
-    def __init__(self, *args, **kwargs):
-        ...
-
-    def __call__(self, *args, **kwargs):
-        print("hello world", args, kwargs)
-
 
 class TochkaAPIBase(TochkaAPIMeta):
     def __init__(
@@ -64,7 +58,6 @@ class TochkaAPIBase(TochkaAPIMeta):
         *args,
         **kwargs,
     ):
-        super().__init__(*args, **kwargs)
         self.__client_id = client_id
         self.__client_secret = client_secret
         self.redirect_uri = redirect_uri
@@ -107,13 +100,13 @@ class TochkaAPIBase(TochkaAPIMeta):
     ) -> Response:
         if json is not None:
             content = ujson.encode(json)
-            headers = headers or {} | {"Content-Type": "application/json"}
+            headers = (headers or {}) | {"Content-Type": "application/json"}
         if auth_required:
             if self.tokens.access_token is not None and not self.tokens.access_is_alive:
                 await self.refresh_tokens()
             elif self.tokens.access_token is None:
                 raise ValueError("access_token is needed for authorization")
-            headers = headers or {} | {
+            headers = (headers or {}) | {
                 "Authorization": f"Bearer {self.tokens.access_token}"
             }
         return await self.http_session.request(
