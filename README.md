@@ -33,7 +33,7 @@ python setup.py install
 * [ ] SBP
   * [ ] QR
   * [ ] Merchants
-  * [ ] Legal
+  * [x] Legal
   * [ ] Refunds
   * [ ] Account
 

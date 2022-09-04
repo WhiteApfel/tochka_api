@@ -10,3 +10,7 @@ class TochkaBaseResponse(BaseModel):
     @root_validator(pre=True)
     def unpack_data(cls, values: dict):  # noqa
         return values | values["Data"]
+
+
+class TochkaBooleanResponse(TochkaBaseResponse):
+    result: bool

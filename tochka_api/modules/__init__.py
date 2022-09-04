@@ -6,7 +6,8 @@ from .base import TochkaAPIBase
 
 from .accounts import TochkaAPIAccounts
 from .balances import TochkaAPIBalances
+from .sbp_legal import TochkaApiSbpLegal
 
 
-class TochkaAPI(TochkaAPIBalances, TochkaAPIAccounts, TochkaAPIBase):
+class TochkaAPI(TochkaApiSbpLegal, TochkaAPIBalances, TochkaAPIAccounts, TochkaAPIBase):
     ...
