@@ -1,9 +1,8 @@
 from datetime import datetime
-from typing import Literal, Iterator
-
-from pydantic import Field, BaseModel, root_validator
+from typing import Iterator, Literal
 
 from models.responses import TochkaBaseResponse
+from pydantic import BaseModel, Field, root_validator
 
 
 class SbpLegalAddress(BaseModel):

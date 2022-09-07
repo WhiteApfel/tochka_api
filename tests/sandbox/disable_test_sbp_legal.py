@@ -1,12 +1,11 @@
 import pytest
-
 from models.responses import (
+    SbpAccountsResponse,
     SbpCustomerInfoResponse,
     SbpLegalEntityResponse,
     SbpRegisterLegalEntity,
-    SbpAccountsResponse,
+    TochkaBooleanResponse,
 )
-from models.responses import TochkaBooleanResponse
 
 
 @pytest.mark.asyncio

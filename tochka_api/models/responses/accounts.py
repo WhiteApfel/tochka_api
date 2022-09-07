@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import Literal, Iterator
+from typing import Iterator, Literal
 
 from models.responses import TochkaBaseResponse
 from pydantic import BaseModel, Field, root_validator, validator

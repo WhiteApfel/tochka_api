@@ -1,9 +1,9 @@
 from datetime import datetime
 
 import pytest as pytest
-
 from models import Tokens
-from settings import TOCHKA_SANDBOX_VALID_TOKEN, TOCHKA_SANDBOX_API_URL
+from settings import TOCHKA_SANDBOX_API_URL, TOCHKA_SANDBOX_VALID_TOKEN
+
 from tochka_api import TochkaAPI
 
 

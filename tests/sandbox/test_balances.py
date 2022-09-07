@@ -1,5 +1,4 @@
 import pytest
-
 from models.responses import BalanceResponse
 
 
