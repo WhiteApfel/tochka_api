@@ -7,7 +7,14 @@ from .base import TochkaAPIBase
 from .accounts import TochkaAPIAccounts
 from .balances import TochkaAPIBalances
 from .sbp_legal import TochkaApiSbpLegal
+from .sbp_refunds import TochkaApiSbpRefunds
 
 
-class TochkaAPI(TochkaApiSbpLegal, TochkaAPIBalances, TochkaAPIAccounts, TochkaAPIBase):
+class TochkaAPI(
+    TochkaApiSbpRefunds,
+    TochkaApiSbpLegal,
+    TochkaAPIBalances,
+    TochkaAPIAccounts,
+    TochkaAPIBase,
+):
     ...

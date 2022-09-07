@@ -9,3 +9,4 @@ from .sbp_legal import (
     SbpRegisterLegalEntity,
     SbpAccountsResponse,
 )
+from .sbp_refunds import SbpPaymentsResponse, SbpRefundResponse
