@@ -39,6 +39,52 @@ class SbpQrCode(BaseModel):
         }
         return qrc_types[qrc_type]
 
+    @root_validator(pre=True)
+    def one_qr(cls, values: dict):
+        if "qrcId" in values["Data"]:
+            values["Account"] = [values["Data"]]
+        return values
+
 
 class SbpQrsResponse(TochkaBaseResponse):
     codes: list[SbpQrCode] = Field(..., alias="qrCodeList")
+
+
+class SbpRegisterQrResponse(TochkaBaseResponse):
+    qrc_id: str = Field(..., alias="qrcId")
+    payload: str
+    image: SbpQrCodeImage
+
+
+class SbpQrPaymentDataResponse(TochkaBaseResponse):
+    address: str
+    amount: int or None
+    currency: str or None
+    brand_name: str = Field(..., alias="brandName")
+    legal_name: str = Field(..., alias="legalName")
+    payment_purpose: str | None = Field(..., alias="paymentPurpose")
+    qrc_type: str
+    mcc: str
+    crc: str
+    qrc_id: str = Field(..., alias="qrcId")
+    creditor_bank_id: str = Field(..., alias="creditorBankId")
+
+    @validator("qrc_type", pre=True)
+    def normalize_qrc_type(cls, qrc_type: str):
+        qrc_types = {
+            "01": "Static",
+            "02": "Dynamic",
+        }
+        return qrc_types[qrc_type]
+
+
+class SbpQrPayment(BaseModel):
+    qrc_id: str = Field(..., alias="qrcId")
+    code: str
+    status: Literal["NotStarted", "Received", "InProgress", "Accepted", "Rejected"]
+    message: str
+    trx_id: str | None = Field(None, alias="trxId")
+
+
+class SbpQrPaymentStatusResponse(TochkaBaseResponse):
+    payments: list[SbpQrPayment] = Field(..., alias="paymentList")

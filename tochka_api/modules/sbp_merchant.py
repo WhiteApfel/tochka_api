@@ -1,4 +1,8 @@
-from models.responses import SbpMerchantsResponse, SbpRegisterMerchantResponse, TochkaBooleanResponse
+from models.responses import (
+    SbpMerchantsResponse,
+    SbpRegisterMerchantResponse,
+    TochkaBooleanResponse,
+)
 from modules import TochkaAPIBase
 
 
@@ -44,20 +48,20 @@ class TochkaApiSbpMerchant(TochkaAPIBase):
         }
 
         return await self.request(
-            method="POST",
-            url=f"/sbp/v1.0/merchant/legal-entity/{legal_id}",
-            json=data
+            method="POST", url=f"/sbp/v1.0/merchant/legal-entity/{legal_id}", json=data
         )
 
-    async def sbp_set_merchant_status(self, merchant_id: str, is_active: bool | str = True) -> TochkaBooleanResponse:
+    async def sbp_set_merchant_status(
+        self, merchant_id: str, is_active: bool | str = True
+    ) -> TochkaBooleanResponse:
         data = {
             "Data": {
-                "status": ("Active" if is_active else "Suspended") if type(is_active) is bool else is_active,
+                "status": ("Active" if is_active else "Suspended")
+                if type(is_active) is bool
+                else is_active,
             }
         }
 
         return await self.request(
-            method="PUT",
-            url=f"/sbp/v1.0/merchant/{merchant_id}",
-            json=data
+            method="PUT", url=f"/sbp/v1.0/merchant/{merchant_id}", json=data
         )
