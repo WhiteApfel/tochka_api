@@ -1,8 +1,8 @@
 from models.responses import BalanceResponse
-from modules import TochkaAPIBase
+from modules import TochkaApiBase
 
 
-class TochkaAPIBalances(TochkaAPIBase):
+class TochkaApiBalances(TochkaApiBase):
     async def get_balances(self) -> BalanceResponse:
         return await self.request(
             method="GET",

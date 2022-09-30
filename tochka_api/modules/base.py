@@ -46,7 +46,7 @@ class TochkaAPIMeta:
         return super(TochkaAPIMeta, cls).__new__(cls)
 
 
-class TochkaAPIBase(TochkaAPIMeta):
+class TochkaApiBase(TochkaAPIMeta):
     def __init__(
         self,
         client_id: str,

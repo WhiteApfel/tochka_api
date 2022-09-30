@@ -5,10 +5,10 @@ from models.responses import (
     TochkaBooleanResponse,
 )
 from models.responses.sbp_legal import SbpAccountsResponse
-from modules import TochkaAPIBase
+from modules import TochkaApiBase
 
 
-class TochkaApiSbpLegal(TochkaAPIBase):
+class TochkaApiSbpLegal(TochkaApiBase):
     async def sbp_get_customer_info(
         self, customer_code: str
     ) -> SbpCustomerInfoResponse:

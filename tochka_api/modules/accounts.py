@@ -1,8 +1,8 @@
 from models.responses.accounts import AccountsResponse
-from modules import TochkaAPIBase
+from modules import TochkaApiBase
 
 
-class TochkaAPIAccounts(TochkaAPIBase):
+class TochkaApiAccounts(TochkaApiBase):
     async def get_accounts(self) -> AccountsResponse:
         return await self.request(
             method="GET",

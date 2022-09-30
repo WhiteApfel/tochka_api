@@ -1,8 +1,8 @@
 from models.responses import SbpPaymentsResponse, SbpRefundResponse
-from modules import TochkaAPIBase
+from modules import TochkaApiBase
 
 
-class TochkaApiSbpRefunds(TochkaAPIBase):
+class TochkaApiSbpRefunds(TochkaApiBase):
     async def sbp_get_payments(
         self, customer_code: str, from_date: str, to_date: str
     ) -> SbpPaymentsResponse:

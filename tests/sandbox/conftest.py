@@ -4,7 +4,7 @@ import pytest as pytest
 from models import Tokens
 from settings import TOCHKA_SANDBOX_API_URL, TOCHKA_SANDBOX_VALID_TOKEN
 
-from tochka_api import TochkaAPI
+from tochka_api import TochkaApi
 
 
 @pytest.fixture
@@ -12,7 +12,7 @@ def tochka_client():
     tokens = Tokens()
     tokens.access_token = TOCHKA_SANDBOX_VALID_TOKEN
     tokens.access_expired_in = datetime(year=2042, month=12, day=31)
-    client = TochkaAPI("", "", base_url=TOCHKA_SANDBOX_API_URL, allow_save_tokens=False)
+    client = TochkaApi("", "", base_url=TOCHKA_SANDBOX_API_URL, allow_save_tokens=False)
     client._tokens = tokens
     return client
 

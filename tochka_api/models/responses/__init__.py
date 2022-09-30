@@ -17,3 +17,4 @@ from .sbp_qr import (
     SbpQrPaymentStatusResponse,
 )
 from .sbp_merchants import SbpMerchantsResponse, SbpRegisterMerchantResponse
+from .sbp_accounts import SbpAccountsResponse

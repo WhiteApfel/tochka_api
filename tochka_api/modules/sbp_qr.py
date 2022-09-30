@@ -8,10 +8,10 @@ from models.responses import (
     SbpQrPaymentDataResponse,
     SbpQrPaymentStatusResponse,
 )
-from modules import TochkaAPIBase
+from modules import TochkaApiBase
 
 
-class TochkaApiSbpQr(TochkaAPIBase):
+class TochkaApiSbpQr(TochkaApiBase):
     async def sbp_get_qrs(self, legal_id: str) -> SbpQrsResponse:
         return await self.request(
             method="GET",
@@ -74,6 +74,7 @@ class TochkaApiSbpQr(TochkaAPIBase):
         return await self.request(
             method="PUT",
             url=f"/sbp/v1.0/qr-code/{qrc_id}",
+            json=data,
         )
 
     async def sbp_get_qr_payment_data(self, qrc_id: str) -> SbpQrPaymentDataResponse:

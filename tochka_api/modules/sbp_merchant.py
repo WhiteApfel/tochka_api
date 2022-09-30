@@ -3,10 +3,10 @@ from models.responses import (
     SbpRegisterMerchantResponse,
     TochkaBooleanResponse,
 )
-from modules import TochkaAPIBase
+from modules import TochkaApiBase
 
 
-class TochkaApiSbpMerchant(TochkaAPIBase):
+class TochkaApiSbpMerchant(TochkaApiBase):
     async def sbp_get_merchants(self, legal_id: str) -> SbpMerchantsResponse:
         return await self.request(
             method="GET",
