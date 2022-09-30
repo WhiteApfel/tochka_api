@@ -30,12 +30,12 @@ python setup.py install
 * [ ] Payments
 * [ ] Consents
 * [ ] Special accounts
-* [ ] SBP
-  * [ ] QR
-  * [ ] Merchants
+* [x] SBP
+  * [x] QR
+  * [x] Merchants
   * [x] Legal
-  * [ ] Refunds
-  * [ ] Account
+  * [x] Refunds
+  * [x] Account
 
 ### 🧑‍🏫 How to use
 
@@ -53,14 +53,14 @@ tochka = TochkaAPI(client_id, client_secret, redirect_uri=redirect_uri)
 
 
 async def main():
-    if tochka.tokens.access_token is None:
-        await tochka.get_consents_token()
-        consents_request = await tochka.create_consents(PermissionsEnum.all())
-        print(tochka.generate_auth_url(consent_id=consents_request.consent_id))
-        await tochka.get_access_token(code=input("Code >>> "))
-    
-    balances = await tochka.get_balances()
-    print(balances[0].amount)
+  if tochka.tokens.access_token is None:
+    await tochka.get_consents_token()
+    consents_request = await tochka.create_consents(PermissionsEnum.all())
+    print(tochka.generate_auth_url(consent_id=consents_request.consent_id))
+    await tochka.get_access_token(code=input("Code >>> "))
+
+  balances = await tochka.get_balances()
+  print(balances[0].amount)
 
 
 asyncio.run(main())
