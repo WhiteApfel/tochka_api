@@ -10,3 +10,5 @@ from .sbp_legal import (
     SbpAccountsResponse,
 )
 from .sbp_refunds import SbpPaymentsResponse, SbpRefundResponse
+from .sbp_qr import SbpQrsResponse
+from .sbp_merchants import SbpMerchantsResponse, SbpRegisterMerchantResponse
