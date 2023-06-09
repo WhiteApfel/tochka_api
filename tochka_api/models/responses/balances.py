@@ -13,7 +13,7 @@ class Amount(BaseModel):
 
 
 class Balance(BaseModel):
-    account_id: str = Field(..., alias="accountId")
+    account: str = Field(..., alias="accountId")
     indicator: Literal["Credit", "Debit"] = Field(..., alias="creditDebitIndicator")
     created_at: datetime = Field(..., alias="dateTime")
     currency: str

@@ -9,9 +9,11 @@
   },
   "devDependencies": {
     "nuxt": "3.0.0-rc.8",
-    "wrangler": "^2.0.28"
+    "wrangler": "^2.0.28",
+    "@rollup/plugin-inject": "^5.0.2npm a"
   },
   "dependencies": {
+    "node-fetch": "^3.3.0",
     "yarn": "^1.22.19"
   }
 }

@@ -1,9 +1,8 @@
 from datetime import datetime
 
-from pydantic import Field, BaseModel, root_validator
-
 from models.responses import TochkaBaseResponse
 from models.responses.sbp_legal import SbpMerchant
+from pydantic import BaseModel, Field, root_validator
 
 
 class SbpMerchantsResponse(TochkaBaseResponse):

@@ -6,7 +6,7 @@ from .balances import BalanceResponse
 from .sbp_legal import (
     SbpLegalEntityResponse,
     SbpCustomerInfoResponse,
-    SbpRegisterLegalEntity,
+    SbpRegisterLegalEntityResponse,
     SbpAccountsResponse,
 )
 from .sbp_refunds import SbpPaymentsResponse, SbpRefundResponse

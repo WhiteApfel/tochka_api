@@ -12,5 +12,5 @@ async def test_balances_response(tochka_client):
 async def test_balance_response(tochka_client):
     accounts = await tochka_client.get_accounts()
     for account in accounts:
-        response = await tochka_client.get_balance(account_id=account.account_id)
+        response = await tochka_client.get_balance(account=account.account)
         assert isinstance(response, BalanceResponse)

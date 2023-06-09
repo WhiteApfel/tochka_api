@@ -18,7 +18,7 @@ class Payment(BaseModel):
         "Timeout",
     ]
     message: str
-    trx_id: str = Field(..., alias="trxId")
+    trx_id: str = Field(..., alias="refTransactionId")
 
 
 class SbpPaymentsResponse(TochkaBaseResponse):

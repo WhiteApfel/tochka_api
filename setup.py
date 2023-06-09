@@ -30,7 +30,7 @@ setup(
     description="Simple Tochka Bank Open API client",
     install_requires=requirements(),
     project_urls={
-        "Source code": "https://github.com/WhiteApfel/pyQiwiP2P",
+        "Source code": "https://github.com/WhiteApfel/tochka-api",
         "Write me": "https://t.me/whiteapfel",
     },
     long_description=read("README.md"),

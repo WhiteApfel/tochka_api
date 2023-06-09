@@ -1,7 +1,6 @@
 from models.responses import TochkaBaseResponse
-from pydantic import BaseModel, Field, root_validator
-
 from models.responses.sbp_legal import SbpAccount
+from pydantic import BaseModel, Field, root_validator
 
 
 class SbpAccountsResponse(TochkaBaseResponse):

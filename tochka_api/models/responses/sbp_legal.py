@@ -28,19 +28,23 @@ class SbpMerchant(SbpLegalAddress):
     merchant_id: str = Field(..., alias="merchantId")
     brand: str = Field(..., alias="brandName")
     capabilities: Literal["001", "010", "011"]
-    phone: str = Field(..., alias="contactPhoneNumber")
+    phone: str | None = Field(None, alias="contactPhoneNumber")
     mcc: str
     additional_contacts: list[dict] | None = Field(None, alias="additionalContacts")
 
 
 class SbpAccount(BaseModel):
-    account_id: str = Field(..., alias="accountId")
+    account: str = Field(..., alias="accountId")
     status: Literal["Active", "Suspended"]
     created_at: datetime = Field(..., alias="createdAt")
     legal_id: str = Field(..., alias="legalId")
 
 
 class SbpCustomerInfoResponse(SbpLegalAddress, SbpLegalDetails, TochkaBaseResponse):
+    """
+    Refers to CustomerInfoResponseV3 https://enter.tochka.com/doc/v2/redoc/tag/swagger.json
+    """
+
     status: Literal["Active", "Suspended"]
     created_at: datetime = Field(..., alias="createdAt")
     customer_code: str = Field(..., alias="customerCode")
@@ -56,7 +60,7 @@ class SbpLegalEntityResponse(SbpLegalAddress, SbpLegalDetails, TochkaBaseRespons
     legal_id: str = Field(..., alias="legalId")
 
 
-class SbpRegisterLegalEntity(TochkaBaseResponse):
+class SbpRegisterLegalEntityResponse(TochkaBaseResponse):
     legal_id: str = Field(..., alias="legalId")
 
 

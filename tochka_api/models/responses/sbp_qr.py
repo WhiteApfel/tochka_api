@@ -1,9 +1,9 @@
+from decimal import Decimal
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, Field, root_validator, validator
-
 from models.responses import TochkaBaseResponse
+from pydantic import BaseModel, Field, root_validator, validator
 
 
 class SbpQrCodeImage(BaseModel):
@@ -14,7 +14,7 @@ class SbpQrCodeImage(BaseModel):
 
 
 class SbpQrCode(BaseModel):
-    account_id: str = Field(..., alias="accountId")
+    account: str = Field(..., alias="accountId")
     status: Literal["Active", "Suspended"]
     created_at: datetime = Field(..., alias="createdAt")
     qrc_id: str = Field(..., alias="qrcId")
@@ -57,25 +57,56 @@ class SbpRegisterQrResponse(TochkaBaseResponse):
 
 
 class SbpQrPaymentDataResponse(TochkaBaseResponse):
+    """
+    Refers to QrCodePaymentDataV3
+
+    Важно: атрибут ``amount`` вернёт сумму в рублях в формате ``Decimal``,
+    для получения суммы в копейках надо обращаться к ``amount_raw``
+
+    Важно: ``qrc_type`` имеет ENUM (01, 02) представление,
+    для получения понятного представления надо обращаться к ``qrc_type_pretty``
+
+    Пояснения к атрибуту ``scenario``:
+
+    :param C2B_SUBSCRIPTION_WITH_PAYMENT: ссылка, зарегистрированная для Сценария «Оплата с привязкой счета»
+    :param C2B_SUBSCRIPTION: ссылка, зарегистрированная для Сценария «Привязка счета без оплаты»
+    :param C2B: одноразовая Платежная ссылка СБП или многоразовая Платежная ссылка СБП с фиксированной суммой
+    :param C2B_CASH_REGISTER: кассовая Платежная ссылка СБП
+    :param C2B_OPEN_SUM: многоразовая Платежная ссылка СБП с открытой суммой
+
+    """
+
     address: str
-    amount: int or None
+    amount_raw: int or None = Field(..., alias="amount")
     currency: str or None
     brand_name: str = Field(..., alias="brandName")
     legal_name: str = Field(..., alias="legalName")
     payment_purpose: str | None = Field(..., alias="paymentPurpose")
-    qrc_type: str
+    subscription_purpose: str | None = Field(..., alias="subscriptionPurpose")
+    qrc_type: Literal["01", "02"] = Field(..., alias="qrcType")
     mcc: str
-    crc: str
     qrc_id: str = Field(..., alias="qrcId")
-    creditor_bank_id: str = Field(..., alias="creditorBankId")
+    member_id: str = Field(..., alias="memberId")
+    scenario: str
 
-    @validator("qrc_type", pre=True)
-    def normalize_qrc_type(cls, qrc_type: str):
+    ogrn: str | None
+    inn: str | None
+
+    redirect_url: str | None = Field(None, alias="redirectUrl")
+
+    @property
+    def amount(self) -> Decimal | None:
+        if self.amount_raw is not None:
+            return (Decimal(self.amount_raw) / Decimal(100)).quantize(Decimal("0.00"))
+        return None
+
+    @property
+    def qrc_type_pretty(self) -> Literal["Static", "Dynamic"]:
         qrc_types = {
             "01": "Static",
             "02": "Dynamic",
         }
-        return qrc_types[qrc_type]
+        return qrc_types[self.qrc_type]
 
 
 class SbpQrPayment(BaseModel):

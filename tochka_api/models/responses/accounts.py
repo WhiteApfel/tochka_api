@@ -13,7 +13,7 @@ class AccountDetails(BaseModel):
 
 class Account(BaseModel):
     customer_code: str = Field(..., alias="customerCode")
-    account_id: str = Field(..., alias="accountId")
+    account: str = Field(..., alias="accountId")
     transit_account: str | None = Field(None, alias="transitAccount")
     status: Literal["Enabled", "Disabled", "Deleted", "ProForma", "Pending"]
     status_updated_at: datetime = Field(..., alias="statusUpdateDateTime")
